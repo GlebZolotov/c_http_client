@@ -55,3 +55,11 @@ int main(int argc, char** argv) {
     printf("%.100s\n...\n", body);
 }
 ```
+
+# c_http_client
+
+I added `interface` param - function `naettInterface` for setting network interface (like `curl --interface` option). Now it supports only for Linux.
+
+Also I added `Makefike` for building shared library. This library may be used in Julia (build with `-fPIC` option).
+
+ 
