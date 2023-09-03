@@ -46,6 +46,8 @@ naettOption* naettBodyWriter(naettWriteFunc writer, void* userData);
 naettOption* naettTimeout(int milliSeconds);
 // Sets the user agent.
 naettOption* naettUserAgent(const char *userAgent);
+// Sets interface.
+naettOption* naettInterface(const char *interface);
 
 /**
  * @brief Creates a new request to the specified url.

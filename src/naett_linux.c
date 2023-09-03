@@ -178,6 +178,9 @@ void naettPlatformMakeRequest(InternalResponse* res) {
     curl_easy_setopt(c, CURLOPT_URL, req->url);
     curl_easy_setopt(c, CURLOPT_CONNECTTIMEOUT_MS, req->options.timeoutMS);
 
+    if (req->options.interface && strlen(req->options.interface) > 0) {
+        curl_easy_setopt(c, CURLOPT_INTERFACE, req->options.interface);
+    }
     curl_easy_setopt(c, CURLOPT_READFUNCTION, readCallback);
     curl_easy_setopt(c, CURLOPT_READDATA, res);
 

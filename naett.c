@@ -60,6 +60,7 @@ typedef struct Buffer {
 typedef struct {
     const char* method;
     const char* userAgent;
+    const char* interface;
     int timeoutMS;
     naettReadFunc bodyReader;
     void* bodyReaderData;
@@ -277,6 +278,18 @@ naettOption* naettUserAgent(const char* userAgent) {
 
     param->string = userAgent;
     param->offset = offsetof(RequestOptions, userAgent);
+    param->setter = stringSetter;
+
+    return (naettOption*)option;
+}
+
+naettOption* naettInterface(const char* interface) {
+    naettAlloc(InternalOption, option);
+    option->numParams = 1;
+    InternalParam* param = &option->params[0];
+
+    param->string = interface;
+    param->offset = offsetof(RequestOptions, interface);
     param->setter = stringSetter;
 
     return (naettOption*)option;
@@ -959,6 +972,10 @@ void naettPlatformMakeRequest(InternalResponse* res) {
     CURL* c = curl_easy_init();
     curl_easy_setopt(c, CURLOPT_URL, req->url);
     curl_easy_setopt(c, CURLOPT_CONNECTTIMEOUT_MS, req->options.timeoutMS);
+
+    if (req->options.interface && strlen(req->options.interface) > 0) {
+        curl_easy_setopt(c, CURLOPT_INTERFACE, req->options.interface);
+    }
 
     curl_easy_setopt(c, CURLOPT_READFUNCTION, readCallback);
     curl_easy_setopt(c, CURLOPT_READDATA, res);

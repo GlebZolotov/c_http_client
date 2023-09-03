@@ -56,6 +56,7 @@ typedef struct Buffer {
 typedef struct {
     const char* method;
     const char* userAgent;
+    const char* interface;
     int timeoutMS;
     naettReadFunc bodyReader;
     void* bodyReaderData;
