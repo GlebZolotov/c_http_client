@@ -3,7 +3,7 @@ using BinaryBuilder, Pkg
 name = "LibCHTTPClient"
 version = v"1.0.0"
 sources = [
-    GitSource("https://github.com/GlebZolotov/c_http_client.git", "a0b97c440357efb3efe4eba9b4ac9a87d4e43244"),
+    GitSource("https://github.com/GlebZolotov/c_http_client.git", "cc69385d977cfe4fc1ad96c0989cea8fb7d4a029"),
 ]
 
 script = raw"""
@@ -16,7 +16,7 @@ platforms = [
 ]
 
 products = [
-    LibraryProduct("http_client", :lib_c_http_client),
+    LibraryProduct("http_client.so", :lib_c_http_client),
 ]
 
 dependencies = [

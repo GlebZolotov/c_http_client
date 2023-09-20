@@ -20,3 +20,11 @@ http_client.o: naett.c
 
 http_client.so: http_client.o 
 	gcc $^ -o $@ $(CFLAGS) $(LDFLAGS)
+
+ifeq ($(PREFIX),)
+    PREFIX := /usr/local
+endif
+
+install: http_client.so
+	install -d $(DESTDIR)$(PREFIX)/lib/
+	install -m 644 http_client.so $(DESTDIR)$(PREFIX)/lib/
