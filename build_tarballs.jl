@@ -3,12 +3,13 @@ using BinaryBuilder, Pkg
 name = "LibCHTTPClient"
 version = v"1.0.0"
 sources = [
-    GitSource("https://github.com/GlebZolotov/c_http_client.git", "cc69385d977cfe4fc1ad96c0989cea8fb7d4a029"),
+    GitSource("https://github.com/GlebZolotov/c_http_client.git", "b869684102c6c19316bd85109b31dce82c40a5e9"),
 ]
 
 script = raw"""
 cd ${WORKSPACE}/srcdir/c_http_client
-make -j${nproc}
+make LDFLAGS="-L${libdir} -I{$includedir}" -j${nproc}
+make PREFIX=${WORKSPACE}/destdir install
 """
 
 platforms = [
@@ -16,7 +17,7 @@ platforms = [
 ]
 
 products = [
-    LibraryProduct("http_client.so", :lib_c_http_client),
+    LibraryProduct("http_client", :lib_c_http_client),
 ]
 
 dependencies = [
