@@ -1,4 +1,4 @@
-CFLAGS = -I.. -g -Wall -pedantic -fPIC -shared
+CFLAGS = -I.. -g -Wall -pedantic -fPIC -shared -std=c99
 #CFLAGS = -O2
 
 ifeq ($(OS),Windows_NT)
