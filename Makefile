@@ -28,4 +28,4 @@ endif
 
 install: http_client$(NAME_END)
 	install -d $(DESTDIR)$(PREFIX)/lib/
-	install -m 644 http_client.so $(DESTDIR)$(PREFIX)/lib/
+	install -m 644 http_client$(NAME_END) $(DESTDIR)$(PREFIX)/lib/
